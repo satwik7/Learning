@@ -1,0 +1,41 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan  base-package="com.shop.controllers" />  
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+        <property name="prefix" value="/WEB-INF/jsp/" />  
+        <property name="suffix" value=".jsp" />  
+    </bean>  
+    
+    <bean id="serverDatasource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+    <property name="url" value="jdbc:mysql://chinnareddy.c9gfqtqwhywq.us-west-2.rds.amazonaws.com:3306/sys" />
+    <property name="username" value="chinna2337" />
+    <property name="password" value="Chinna2337" />
+</bean>
+
+<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">  
+<property name="dataSource" ref="serverDatasource"></property>  
+</bean>  
+  
+<bean id="edao" class="com.shop.dao.ShoppingDao">  
+<property name="jdbcTemplate" ref="jdbcTemplate"></property>  
+</bean>  
+
+    
+    <mvc:resources mapping="/images/**" location="/images/"/>
+    <mvc:resources mapping="/resources/**" location="/resources/"
+	cache-period="31556926"/>
+
+    <mvc:annotation-driven />
+
+ </beans>  
