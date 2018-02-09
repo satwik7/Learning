@@ -49,7 +49,6 @@ import com.pojo.Employee;
 
 		 @RequestMapping(value="/hellopageupdate", method=RequestMethod.POST)  
 		    public ModelAndView hellopageupdate(@ModelAttribute("Employee1") Employee e) {  
-			 
 			    dao.updateEmployee(e);
 		        String message = "student data updated successfully";  
 		        return new ModelAndView("update", "message", message);  
@@ -63,5 +62,5 @@ import com.pojo.Employee;
 		        return new ModelAndView("delete", "message", message);  
 		    }  
 
-
+//git
 	}
